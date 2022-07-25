@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Results from "./Results";
 import "./search-engine-styles.css";
 
 export default function Dictionary() {
   let [word, setWord] = useState("");
+  let [results, setResults] = useState(null);
 
   function handleResponse(response) {
     console.log(response.data[0]);
+    return setResults(response.data[0]);
   }
 
   function searchWord(event) {
@@ -30,6 +33,7 @@ export default function Dictionary() {
           onChange={changeWord}
         />
       </form>
+      <Results result={results} />
     </div>
   );
 }
