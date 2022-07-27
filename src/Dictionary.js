@@ -41,6 +41,7 @@ export default function Dictionary() {
     let headers = { Authorization: `Bearer ${pexelsKey}` };
     axios.get(pexelsUrl, { headers: headers }).then(handlePexelsResponse);
     //axios.get(pexelsUrlBackground, { headers: headers }).then(changeBackground);
+    return true;
   }
 
   function changeWord(event) {
