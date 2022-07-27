@@ -4,7 +4,7 @@ export default function Definition(props) {
   if (props.definition) {
     return (
       <div className="Definition">
-        <p class="d-inline"> - {props.definition}</p>
+        <p className="d-inline"> - {props.definition}</p>
       </div>
     );
   } else {

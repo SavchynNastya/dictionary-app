@@ -2,19 +2,13 @@ import React, { useState } from "react";
 import Meaning from "./Meaning";
 import { Howl } from "howler";
 import "./index.css";
-//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Results(props) {
-  const [sound, setSound] = useState(null);
-  console.log(props);
-
-  function changeSound() {
-    setSound(props.result.phonetics[0].audio);
-    soundPlay(sound);
-  }
-
-  function soundPlay(src) {
-    const sound = new Howl({ src, html5: true });
+  function soundPlay() {
+    const sound = new Howl({
+      src: [props.result.phonetics[0].audio],
+      html5: true,
+    });
     sound.play();
   }
   if (props.result) {
@@ -22,12 +16,18 @@ export default function Results(props) {
       <div className="Results">
         <div className="word-phonetics-sound">
           <div>
-            <button className="play-sound" onClick={changeSound}>
+            <button className="play-sound" onClick={soundPlay}>
               <i className="fa-solid fa-circle-play"></i>
             </button>
             <h3 className="d-inline">{props.result.word}</h3>
           </div>
-          <p className="phonetics">{props.result.phonetics[0].text}</p>
+          {props.result.phonetics.map(function (phon, index) {
+            return (
+              <p key={index} className="phonetics">
+                {phon.text}
+              </p>
+            );
+          })}
         </div>
         {props.result.meanings.map(function (meaning, index) {
           return (
