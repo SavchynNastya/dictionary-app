@@ -82,6 +82,19 @@ input {
   display: inline-block;
 }
 
+.Photos {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.Photos img {
+  margin: 1rem;
+  border-radius: 4px;
+  width: 28%;
+  height: auto;
+}
+
 .example {
   color: rgb(231, 59, 88);
 }
