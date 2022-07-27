@@ -8,6 +8,7 @@ export default function Dictionary() {
   let [word, setWord] = useState("");
   let [results, setResults] = useState(null);
   let [photos, setPhotos] = useState(null);
+  // let [image, setImage] = useState(null);
 
   function handleDictionaryResponse(response) {
     // console.log(response.data[0]);
@@ -16,17 +17,13 @@ export default function Dictionary() {
 
   function handlePexelsResponse(response) {
     // console.log(response);
-    setPhotos(response.data.photos);
+    return setPhotos(response.data.photos);
   }
 
   // function changeBackground(response) {
   //   console.log(response);
-  //   return (
-  //     <img
-  //       src={response.data.photos[0].src.landscape}
-  //       alt={response.data.photos[0].alt}
-  //     />
-  //   );
+  //   //return setImage(response.data.hits[0].largeImageURL);
+  //   this.css("background-image", response.data.hits[0].largeImageURL);
   // }
 
   function searchWord(event) {
@@ -37,10 +34,12 @@ export default function Dictionary() {
 
     let pexelsKey = "563492ad6f9170000100000102da905b8a4c42738c484891922b2be4";
     let pexelsUrl = `https://api.pexels.com/v1/search?query=${word}&per_page=6`;
-    //let pexelsUrlBackground = `https://api.pexels.com/v1/search?query=${word}&per_page=1`;
     let headers = { Authorization: `Bearer ${pexelsKey}` };
     axios.get(pexelsUrl, { headers: headers }).then(handlePexelsResponse);
-    //axios.get(pexelsUrlBackground, { headers: headers }).then(changeBackground);
+
+    // let pixabayKey = "28876423-c65320575c7546cb355315fd4";
+    // let pixabayApi = `https://pixabay.com/api/?key=${pixabayKey}&q=${word}&image_type=photo`;
+    // axios.get(pixabayApi).then(changeBackground);
     return true;
   }
 
